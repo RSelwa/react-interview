@@ -14,6 +14,9 @@ importers:
       '@radix-ui/react-select':
         specifier: ^2.1.1
         version: 2.1.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      freekeys:
+        specifier: ^0.0.4
+        version: 0.0.4
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1106,6 +1109,9 @@ packages:
 
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
+
+  freekeys@0.0.4:
+    resolution: {integrity: sha512-d/pbi/vDKdohymCdeB82stq08zwxSzOIhkMfmrQFAysrCXyslF2mBNpGFPFilYpZ3a1XL+P9wtFvVmhYk1pYiw==}
 
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
@@ -2778,6 +2784,8 @@ snapshots:
       signal-exit: 4.1.0
 
   fraction.js@4.3.7: {}
+
+  freekeys@0.0.4: {}
 
   fs.realpath@1.0.0: {}
 
