@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "lib": ["ESNext", "DOM", "ES2015"],
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@types/*": ["src/types/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "./*.js", "./*.mjs"]
+}
