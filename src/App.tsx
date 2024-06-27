@@ -2,28 +2,49 @@ import React, { useEffect } from "react"
 import MovieCard from "@components/movie-card"
 import { useSearchParams } from "react-router-dom"
 import { movies$ } from "../movies"
-
 import { Movie } from "@/types"
 import { useCustomContext } from "@/custom-context"
+import Header from "@/components/header"
+import {
+  API_KEY,
+  baseUrlImg,
+  defaultNumberOfElementsPerPage,
+  defaultPage,
+  defaultUrlImg,
+} from "@/constants"
+import { fetchMoviesImages, getMovieByTitle } from "@/lib"
 
 const App = () => {
   const { movies, setMovies } = useCustomContext()
-  const moviesCategories = [...new Set(movies.map((movie) => movie.category))]
-
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
+  const numberOfElementsPerPage =
+    parseInt(searchParams.get("n")) || defaultNumberOfElementsPerPage
   const categoryFilter = searchParams.get("c")
-  const filterMovies = (category: string) => {
-    if (category === "default") {
-      const newSearchParams = searchParams
-      newSearchParams.delete("c")
-      setSearchParams(newSearchParams)
+  const pagination = parseInt(searchParams.get("p")) || defaultPage
+  const startIndex = (pagination - 1) * numberOfElementsPerPage
+  const endIndex = startIndex + numberOfElementsPerPage
 
-      return
-    }
-    setSearchParams({ ...searchParams, c: category })
-  }
   const fetchMovies = async () => {
     const moviesList = (await movies$) as Movie[]
+    try {
+      const allImgUrl = await Promise.all(
+        moviesList.map(async (movie) => {
+          const { results } = await getMovieByTitle(movie.title)
+          const idFirstResult = results[0].id
+
+          const { posters } = await fetchMoviesImages(idFirstResult)
+          const posterUrl = posters[0].file_path
+          const url = posterUrl ? baseUrlImg + posterUrl : defaultUrlImg
+
+          return url as string
+        })
+      )
+      moviesList.map((movie, index) => {
+        movie.imgUrl = allImgUrl[index] as string
+      })
+    } catch (error) {
+      console.error(error)
+    }
     setMovies(moviesList)
   }
 
@@ -33,24 +54,13 @@ const App = () => {
 
   return (
     <main>
-      <header className="w-full py-4 bg-gray-700 pl-40">
-        <select
-          onChange={(e) => filterMovies(e.target.value)}
-          className="border-none outline-none px-2 py-2"
-        >
-          <option defaultChecked value="default">
-            Selctionner une catégorie
-          </option>
-          {moviesCategories.map((categorie, i) => (
-            <option key={i}>{categorie}</option>
-          ))}
-        </select>
-      </header>
-      <section className="flex flex-wrap gap-4 mx-auto w-10/12">
+      <Header />
+      <section className="flex flex-wrap justify-center gap-4 mx-auto w-10/12 py-4">
         {movies
           .filter((movie) =>
             categoryFilter ? movie.category === categoryFilter : movie
           )
+          .slice(startIndex, endIndex)
           .map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}

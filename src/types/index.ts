@@ -4,4 +4,7 @@ export type Movie = {
   category: string
   likes: number
   dislikes: number
+  isLiked?: boolean
+  isDisliked?: boolean
+  imgUrl?: string
 }

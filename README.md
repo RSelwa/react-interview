@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# react-interview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Lister les films dans des cartes avec: le titre en gras, la catégorie et une jauge type Youtube indiquant le ratio likes/dislikes. Les cartes doivent être côtes à côtes et responsive. Càd que lorsque la fenêtre se réduit, les cartes sautent à la ligne suivante.
 
-Currently, two official plugins are available:
+2. Ajouter un bouton dans les cartes permettant de supprimer celle-ci
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. Ajouter un bouton toggle like/dislike
 
-## Expanding the ESLint configuration
+4. Ajouter un filtre par catégorie (de type multiselect) en supposant qu'on ne les connaisse pas à l'avance (il faut donc les récupérer dynamiquement depuis les films). Si tous les films d'une catégorie sont supprimés, celle-ci ne doit plus apparaître.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+5. Ajouter un système de pagination avec les fonctionnalités suivantes:
+   - Boutons précédent/suivant
+   - Choix du nombre d'élements affichés par page (4, 8 ou 12).
 
-- Configure the top-level `parserOptions` property like this:
+Prenez des initiatives, il y a des points bonus si
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- C'est joli
+- Vous utilisez correctement REDUX
+- Il y a une attention aux détails
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+/!\ La suppression du comportement asynchrone dans `movies.js` entraînera une annulation du test.
