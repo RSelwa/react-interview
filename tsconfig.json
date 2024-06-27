@@ -3,11 +3,12 @@
     "esModuleInterop": true,
     "module": "ESNext",
     "target": "ESNext",
-    "jsx": "preserve",
+    "jsx": "react",
     "moduleResolution": "node",
     "baseUrl": ".",
     "lib": ["ESNext", "DOM", "ES2015"],
     "paths": {
+      "rollup/parseAst": ["./node_modules/rollup/dist/parseAst"],
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@types/*": ["src/types/*"]

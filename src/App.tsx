@@ -6,7 +6,6 @@ import { Movie } from "@/types"
 import { useCustomContext } from "@/custom-context"
 import Header from "@/components/header"
 import {
-  API_KEY,
   baseUrlImg,
   defaultNumberOfElementsPerPage,
   defaultPage,
