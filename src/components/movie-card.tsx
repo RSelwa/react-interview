@@ -54,25 +54,25 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
   }
 
   return (
-    <div className="p-2 relative rounded-lg shadow-md hover:shadow-xl transition-all w-52 space-y-1">
+    <div className="p-2 relative rounded-lg shadow-md hover:shadow-xl transition-all bg-gray-700 w-52 space-y-1">
       {!movie.imgUrl && (
-        <Skeleton className="object-cover w-full  aspect-[9/16]" />
+        <Skeleton className="object-cover w-full  aspect-[9/12] rounded" />
       )}
       {movie.imgUrl && (
         <img
-          className="object-cover w-full aspect-[9/16]"
+          className="object-cover w-full aspect-[9/12] rounded"
           src={movie.imgUrl}
           alt="movie_poster"
         />
       )}
 
-      <b className="text-gray-900">{movie.title}</b>
-      <p className="text-gray-400 text-sm">{movie.category}</p>
+      <b className="text-gray-200">{movie.title}</b>
+      <p className="text-gray-300 text-sm">{movie.category}</p>
       <div className="flex items-center gap-2 w-full">
         <button
           onClick={() => handleLikes(true)}
           data-state={movie.isLiked ? "checked" : null}
-          className="p-1 rounded text-green-600 data-[state=checked]:bg-green-200 hover:bg-gray-100"
+          className="p-1 rounded text-green-600 data-[state=checked]:bg-green-200 hover:bg-green-100"
         >
           <HandThumbUpIcon className="size-4" />
         </button>
@@ -85,7 +85,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
         <button
           data-state={movie.isDisliked ? "checked" : null}
           onClick={() => handleLikes(false)}
-          className="p-1 rounded hover:bg-gray-100 data-[state=checked]:bg-red-200 text-red-600"
+          className="p-1 rounded hover:bg-red-100 data-[state=checked]:bg-red-200 text-red-600"
         >
           <HandThumbDownIcon className="size-4" />
         </button>

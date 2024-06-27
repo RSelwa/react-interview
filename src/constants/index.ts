@@ -6,3 +6,8 @@ export const defaultUrlImg =
 
 export const baseUrlImg = "http://image.tmdb.org/t/p/w500"
 export const API_TOKEN = import.meta.env.VITE_TOKEN
+export const paramsMapping = {
+  N: "n",
+  C: "c",
+  P: "p",
+}
